@@ -6,8 +6,8 @@ import { fetchCurrencies } from '../actions';
 
 class Wallet extends React.Component {
   componentDidMount() {
-    // const { fetchCurrencies } = this.props;
-    fetchCurrencies();
+    const { coinAPI } = this.props;
+    coinAPI();
   }
 
   // Requisito 06
@@ -78,21 +78,6 @@ class Wallet extends React.Component {
         >
           Adicionar despesa
         </button>
-
-        {/* <button
-          data-testid="edit-btn"
-          type="button"
-          onClick={ this.addDespesa }
-        >
-          Editar despesa
-        </button>
-
-        <button
-          type="button"
-          onClick={ this.addDespesa }
-        >
-          Adicionar despesa
-        </button> */}
       </div>
     );
   }
@@ -104,6 +89,10 @@ const mapStateToProps = (state) => ({ // retorna um objeto
   userTotal: state.user.total,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  coinAPI: () => dispatch(fetchCurrencies()),
+});
+
 Wallet.propTypes = {
   fetchCurrencies: PropTypes.func,
   userWallet: PropTypes.array,
@@ -111,4 +100,4 @@ Wallet.propTypes = {
 }.isRequired;
 
 // export default Wallet;
-export default connect(mapStateToProps, null)(Wallet);
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

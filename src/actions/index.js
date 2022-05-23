@@ -12,10 +12,10 @@ export const setResultFetch = (currencies) => ({
 // o thunk permite que se faça esse dispatch
 export const fetchCurrencies = () => async (dispatch) => { // action do fetch
   try {
-    const response = fetch('https://economia.awesomeapi.com.br/json/all');
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const result = await response.json(); // pega o resultado do fetch
-    const { results: currencies } = result;
-    dispatch(setResultFetch(currencies));
+    const arrayResult = Object.keys(result).filter((coin) => coin !== 'USDT');
+    dispatch(setResultFetch(arrayResult));
   } catch (error) {
     console.log(error);
   }
