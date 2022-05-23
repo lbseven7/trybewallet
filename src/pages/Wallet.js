@@ -16,7 +16,7 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { userEmail } = this.props;
+    const { userEmail, currencies } = this.props;
     return (
       <div>
         TrybeWallet
@@ -38,7 +38,14 @@ class Wallet extends React.Component {
         <label htmlFor="moeda">
           Moeda
           <select id="moeda" data-testid="method-input">
-            <option>{}</option>
+            {currencies.map((coin, index) => (
+              <option
+                value={ coin }
+                key={ index }
+              >
+                {coin}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -85,7 +92,7 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({ // retorna um objeto
   userEmail: state.user.email,
-  userWallet: state.wallet.currencies, //
+  currencies: state.wallet.currencies, //
   userTotal: state.user.total,
 });
 
