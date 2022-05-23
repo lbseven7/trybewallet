@@ -1,12 +1,7 @@
 // Coloque aqui suas actions
 export const setUserEmail = (email) => ({
-  type: 'SET_USER_EMAIL',
+  type: 'SET_USER',
   payload: email,
-});
-
-export const setUserPassword = (senha) => ({
-  type: 'SET_USER_PASSWORD',
-  payload: senha,
 });
 
 export const setResultFetch = (currencies) => ({

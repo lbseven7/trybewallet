@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import userReducer from '../reducers/wallet';
 import { fetchCurrencies } from '../actions';
+// import userReducer from '../reducers/user';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -10,24 +10,35 @@ class Wallet extends React.Component {
     fetchCurrencies();
   }
 
+  // Requisito 06
+  addDespesa = () => {
+    console.log('clicou');
+  }
+
   render() {
-    const { userEmail, userWallet } = this.props;
+    const { userEmail } = this.props;
     return (
       <div>
         TrybeWallet
-        <header data-testid="email-field">{userEmail}</header>
-        <p data-testid="total-field">{}</p>
-        <p data-testid="header-currency-field">{}</p>
+        <header data-testid="email-field">
+          {userEmail}
+          <p data-testid="total-field">0</p>
+        </header>
+        <p data-testid="header-currency-field">BRL</p>
 
         <label htmlFor="valor">
           Valor:
-          <input id="valor" type="number" data-testid="value-input" />
+          <input
+            id="valor"
+            type="number"
+            data-testid="value-input"
+          />
         </label>
 
         <label htmlFor="moeda">
           Moeda
           <select id="moeda" data-testid="method-input">
-            <option>{userWallet}</option>
+            <option>{}</option>
           </select>
         </label>
 
@@ -53,9 +64,35 @@ class Wallet extends React.Component {
 
         <label htmlFor="description">
           Descrição
-          <input id="description" type="select" data-testid="description-input" />
+          <input
+            id="description"
+            type="select"
+            data-testid="description-input"
+          />
         </label>
 
+        <button
+          data-testid="delete-btn"
+          type="button"
+          onClick={ this.deleteDespesa }
+        >
+          Adicionar despesa
+        </button>
+
+        {/* <button
+          data-testid="edit-btn"
+          type="button"
+          onClick={ this.addDespesa }
+        >
+          Editar despesa
+        </button>
+
+        <button
+          type="button"
+          onClick={ this.addDespesa }
+        >
+          Adicionar despesa
+        </button> */}
       </div>
     );
   }
@@ -63,12 +100,14 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({ // retorna um objeto
   userEmail: state.user.email,
-  userWallet: state.wallet.currencies, // não vai
+  userWallet: state.wallet.currencies, //
+  userTotal: state.user.total,
 });
 
 Wallet.propTypes = {
   fetchCurrencies: PropTypes.func,
   userWallet: PropTypes.array,
+  userReducer: PropTypes.object,
 }.isRequired;
 
 // export default Wallet;
