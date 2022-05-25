@@ -9,23 +9,31 @@ export const setResultFetch = (currencies) => ({
   payload: currencies, // terá um array com a lista
 });
 
-export const setTotal = (total) => ({
-  type: 'SET_TOTAL',
-  payload: total,
-});
-
-export const setExpenses = (expense) => ({
-  type: 'SET_EXPENSES',
-  payload: expense,
-});
-
 // o thunk permite que se faça esse dispatch
 export const fetchCurrencies = () => async (dispatch) => { // action do fetch
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const result = await response.json(); // pega o resultado do fetch
-    // recebe um objeto e tranforma num array para poder filtrar
-    dispatch(setResultFetch(result));
+    // recebe um objecto e tranforma num array para poder filtrar
+    const arrayResult = Object.keys(result).filter((coin) => coin !== 'USDT');
+    dispatch(setResultFetch(arrayResult));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setExpenses = (walletState, expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses, // terá um array com a lista
+  walletState,
+});
+
+export const fetchExpenses = () => async (dispatch) => { // action do fetch
+  try {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const result = await response.json();
+    delete result.USDT;
+    dispatch(setExpenses(result));
   } catch (error) {
     console.log(error);
   }
