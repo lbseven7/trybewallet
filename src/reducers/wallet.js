@@ -2,7 +2,6 @@
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  total: 0,
 };
 
 // criei meu reducer

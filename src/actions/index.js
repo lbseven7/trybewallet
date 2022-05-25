@@ -14,7 +14,6 @@ export const fetchCurrencies = () => async (dispatch) => { // action do fetch
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const result = await response.json(); // pega o resultado do fetch
-    // recebe um objecto e tranforma num array para poder filtrar
     const arrayResult = Object.keys(result).filter((coin) => coin !== 'USDT');
     dispatch(setResultFetch(arrayResult));
   } catch (error) {
@@ -28,12 +27,12 @@ export const setExpenses = (walletState, expenses) => ({
   walletState,
 });
 
-export const fetchExpenses = () => async (dispatch) => { // action do fetch
+export const fetchExpenses = (walletState) => async (dispatch) => { // action do fetch
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const result = await response.json();
     delete result.USDT;
-    dispatch(setExpenses(result));
+    dispatch(setExpenses(walletState, result));
   } catch (error) {
     console.log(error);
   }
