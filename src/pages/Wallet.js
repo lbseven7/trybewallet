@@ -166,18 +166,29 @@ class Wallet extends React.Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-          {/* <tbody>
-            <tr>
-              <td>{description}</td>
-              <td>{tag}</td>
-              <td>{method}</td>
-              <td>{value}</td>
-              <td>{currency}</td>
-              <td>qual valor?</td>
-              <td>{currencies.name}</td>
-              <td>Real</td>
-            </tr>
-          </tbody> */}
+          <tbody>
+            {walletExpense.map((expense) => ((
+              <tr key={ expense.id }>
+                <td>{expense.description}</td>
+                <td>{expense.tag}</td>
+                <td>{expense.method}</td>
+                <td>{Number(expense.value).toFixed(2)}</td>
+                <td>{expense.currency}</td>
+                <td>{expense.exchangeRates[expense.currency].name}</td>
+                <td>{Number(expense.exchangeRates[expense.currency].ask).toFixed(2)}</td>
+                <td>
+                  {Number(expense.value * expense.exchangeRates[expense.currency].ask)
+                    .toFixed(2)}
+                </td>
+                <td>Real</td>
+                <td>
+                  <button type="button" data-testid="edit-btn">Editar</button>
+                  <button type="button" data-testid="delete-btn">Deletar</button>
+                </td>
+              </tr>
+            )))}
+
+          </tbody>
         </table>
       </div>
     );
