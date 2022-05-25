@@ -152,7 +152,7 @@ class Wallet extends React.Component {
           </button>
         </form>
 
-        {/* <table>
+        <table>
           <thead>
             <tr>
               <th>Descrição</th>
@@ -163,12 +163,10 @@ class Wallet extends React.Component {
               <th>Câmbio utilizado</th>
               <th>Valor convertido</th>
               <th>Moeda de conversão</th>
-              Editar/Excluir
-              <button type="button">Editar</button>
-              <button type="button">Excluir</button>
+              <th>Editar/Excluir</th>
             </tr>
           </thead>
-          <tbody>
+          {/* <tbody>
             <tr>
               <td>{description}</td>
               <td>{tag}</td>
@@ -179,8 +177,8 @@ class Wallet extends React.Component {
               <td>{currencies.name}</td>
               <td>Real</td>
             </tr>
-          </tbody>
-        </table> */}
+          </tbody> */}
+        </table>
       </div>
     );
   }
