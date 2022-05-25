@@ -92,7 +92,7 @@ class Wallet extends React.Component {
             name="currency"
             onChange={ this.handleChange }
           >
-            {currencies.map((coin, index) => (
+            {currencies && currencies.map((coin, index) => (
               <option
                 value={ coin }
                 key={ index }
@@ -126,11 +126,11 @@ class Wallet extends React.Component {
             data-testid="tag-input"
             onChange={ this.handleChange }
           >
-            <option>Alimentação</option>
-            <option>Lazer</option>
-            <option>Trabalho</option>
-            <option>Transporte</option>
-            <option>Saúde</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
 
