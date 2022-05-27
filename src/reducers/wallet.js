@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 
 // criei meu reducer
 const walletReducer = (state = INITIAL_STATE, action) => {
+  const filterDelete = state.expenses.filter((expense) => expense.id !== action.payload);
   switch (action.type) {
   case 'SET_RESULT_LIST':
     return { ...state, currencies: action.payload }; // vem action fetch API
@@ -16,6 +17,9 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       expenses: [
         ...state.expenses, { ...action.walletState, exchangeRates: action.expenses }],
     };
+  case 'DELETE_LINE_TABLE':
+    return {
+      ...state, expenses: filterDelete };
   default:
     return state;
   }

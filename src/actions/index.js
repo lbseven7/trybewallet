@@ -9,6 +9,11 @@ export const setResultFetch = (currencies) => ({
   payload: currencies, // terá um array com a lista
 });
 
+export const deleteLineTable = (id) => ({
+  type: 'DELETE_LINE_TABLE',
+  payload: id,
+});
+
 // o thunk permite que se faça esse dispatch
 export const fetchCurrencies = () => async (dispatch) => { // action do fetch
   try {

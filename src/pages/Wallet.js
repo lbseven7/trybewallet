@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrencies, fetchExpenses } from '../actions';
+import { fetchCurrencies, fetchExpenses, deleteLineTable } from '../actions';
 // import userReducer from '../reducers/user';
 
 class Wallet extends React.Component {
@@ -51,9 +51,25 @@ class Wallet extends React.Component {
     });
   }
 
+  deleteExpense = (id) => {
+    const { deleteLine } = this.props;
+    deleteLine(id);
+    console.log('excluir linhas quando clicar');
+
+    // this.setState({
+    //   id: 0,
+    //   value: 0,
+    //   description: '',
+    //   currency: 'USD',
+    //   method: 'Dinheiro',
+    //   tag: 'Lazer',
+    // });
+  };
+
   render() {
     const { userEmail, currencies, walletExpense } = this.props;
     const { value, description, method, tag, currency } = this.state;
+    // console.log(walletExpense);
     return (
       <div>
         TrybeWallet
@@ -182,8 +198,21 @@ class Wallet extends React.Component {
                 </td>
                 <td>Real</td>
                 <td>
-                  <button type="button" data-testid="edit-btn">Editar</button>
-                  <button type="button" data-testid="delete-btn">Deletar</button>
+                  <button
+                    type="button"
+                    data-testid="edit-btn"
+                  >
+                    Editar
+
+                  </button>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => this.deleteExpense(expense.id) }
+                  >
+                    Deletar
+
+                  </button>
                 </td>
               </tr>
             )))}
@@ -205,6 +234,7 @@ const mapStateToProps = (state) => ({ // retorna um objeto
 const mapDispatchToProps = (dispatch) => ({
   coinAPI: () => dispatch(fetchCurrencies()),
   expenseUser: (expense) => dispatch(fetchExpenses(expense)),
+  deleteLine: (id) => dispatch(deleteLineTable(id)),
 });
 
 Wallet.propTypes = {
