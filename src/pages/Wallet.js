@@ -54,16 +54,6 @@ class Wallet extends React.Component {
   deleteExpense = (id) => {
     const { deleteLine } = this.props;
     deleteLine(id);
-    console.log('excluir linhas quando clicar');
-
-    // this.setState({
-    //   id: 0,
-    //   value: 0,
-    //   description: '',
-    //   currency: 'USD',
-    //   method: 'Dinheiro',
-    //   tag: 'Lazer',
-    // });
   };
 
   render() {
