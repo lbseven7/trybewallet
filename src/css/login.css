@@ -5,11 +5,31 @@
 }
 
 input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  margin: 8px 0;
+  padding: 12px 20px;
+  width: 50%;
 }
 
 button {
-  background-color: aqua;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
   display: flex;
+  margin: 5px 0;
+  padding: 14px 20px;
+  width: 50%;
+}
+
+.div-form-login {
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  width: 50%;
 }

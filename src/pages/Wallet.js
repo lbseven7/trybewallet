@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrencies, fetchExpenses, deleteLineTable } from '../actions';
+import '../css/wallet.css';
 // import userReducer from '../reducers/user';
 
 class Wallet extends React.Component {
@@ -61,8 +62,7 @@ class Wallet extends React.Component {
     const { value, description, method, tag, currency } = this.state;
     // console.log(walletExpense);
     return (
-      <div>
-        TrybeWallet
+      <div className="container">
         <header data-testid="email-field">
           {userEmail}
           <p data-testid="header-currency-field">BRL</p>
@@ -71,8 +71,7 @@ class Wallet extends React.Component {
               .toFixed(2) || 0}
           </p>
         </header>
-
-        <form>
+        <form className="form">
           <label htmlFor="valor">
             Valor:
             <input
@@ -84,7 +83,6 @@ class Wallet extends React.Component {
               onChange={ this.handleChange } /* */
             />
           </label>
-
           <label htmlFor="moeda">
             Moeda:
             <select
@@ -105,7 +103,6 @@ class Wallet extends React.Component {
               ))}
             </select>
           </label>
-
           <label htmlFor="pagamento">
             Método de pagamento:
             <select
@@ -120,7 +117,6 @@ class Wallet extends React.Component {
               <option>Cartão de débito</option>
             </select>
           </label>
-
           <label htmlFor="dropdown">
             <select
               id="dropdown"
@@ -137,7 +133,6 @@ class Wallet extends React.Component {
               <option>Saúde</option>
             </select>
           </label>
-
           <label htmlFor="labelFor">
             Descrição:
             <input
@@ -149,7 +144,6 @@ class Wallet extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-
           <button
             type="button"
             onClick={ this.addDespesa }
@@ -157,7 +151,6 @@ class Wallet extends React.Component {
             Adicionar despesa
           </button>
         </form>
-
         <table>
           <thead>
             <tr>
@@ -193,7 +186,6 @@ class Wallet extends React.Component {
                     data-testid="edit-btn"
                   >
                     Editar
-
                   </button>
                   <button
                     type="button"
@@ -201,12 +193,10 @@ class Wallet extends React.Component {
                     onClick={ () => this.deleteExpense(expense.id) }
                   >
                     Deletar
-
                   </button>
                 </td>
               </tr>
             )))}
-
           </tbody>
         </table>
       </div>
